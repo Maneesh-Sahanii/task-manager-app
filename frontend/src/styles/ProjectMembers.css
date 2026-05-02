@@ -1,0 +1,97 @@
+.project-members {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.project-members h2 {
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.members-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.member-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-item div {
+  flex: 1;
+}
+
+.member-item strong {
+  display: block;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.member-item p {
+  margin: 0;
+  font-size: 12px;
+  color: #999;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.remove-member-btn {
+  padding: 6px 10px;
+  background-color: #fee;
+  color: #c33;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.remove-member-btn:hover {
+  background-color: #fdd;
+}
+
+.add-member-form {
+  display: flex;
+  gap: 8px;
+}
+
+.add-member-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.add-member-form input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-member-form button {
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-member-form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
