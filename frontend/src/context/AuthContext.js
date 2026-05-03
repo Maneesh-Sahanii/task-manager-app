@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import api from "../api";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loading, setLoading] = useState(true);
 
+  // Check if user is logged in on mount
   useEffect(() => {
     if (token) {
       verifyToken();
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyToken = async () => {
     try {
-      const response = await api.get("/api/auth/me", {
+      const response = await axios.get("/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(response.data.user);
@@ -31,8 +32,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (name, email, password, confirmPassword) => {
-    const response = await api.post("/api/auth/signup", {
-      name, email, password, confirmPassword
+    const response = await axios.post("/api/auth/signup", {
+      name,
+      email,
+      password,
+      confirmPassword
     });
     localStorage.setItem("token", response.data.token);
     setToken(response.data.token);
@@ -41,8 +45,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await api.post("/api/auth/login", {
-      email, password
+    const response = await axios.post("/api/auth/login", {
+      email,
+      password
     });
     localStorage.setItem("token", response.data.token);
     setToken(response.data.token);
