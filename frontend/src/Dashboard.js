@@ -4,6 +4,7 @@ import { useAuth } from "./context/AuthContext";
 import ProjectList from "./components/ProjectList";
 import ProjectDetail from "./components/ProjectDetail";
 import CreateProject from "./components/CreateProject";
+import api from "./api";
 import "./styles/Dashboard.css";
 
 function Dashboard() {
@@ -25,11 +26,10 @@ function Dashboard() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("/api/projects", {
+      const response = await api.get("/api/projects", {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const data = await response.json();
-      setProjects(data.projects || []);
+      setProjects(response.data.projects || []);
       setError("");
     } catch (err) {
       setError("Failed to load projects");
@@ -68,7 +68,6 @@ function Dashboard() {
       </header>
 
       <div className="dashboard-content">
-        {/* Sidebar */}
         <aside className="sidebar">
           <div className="sidebar-header">
             <h2>Projects</h2>
@@ -89,7 +88,6 @@ function Dashboard() {
           />
         </aside>
 
-        {/* Main Content */}
         <main className="main-content">
           {showCreateProject ? (
             <CreateProject
